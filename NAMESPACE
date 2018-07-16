@@ -1,0 +1,7 @@
+export(MANOVA, PerMANOVA.Simple, PerMANOVAF, PostHocComp, summary.spermanova, DistanciasBinarias,
+       MANOVA2Way, MANOVA.Estimacion, summary.MANOVA, PERMANOVA, DistanciasContinuas, PERMANOVA.Estimacion)
+import(Matrix, MultBiplotR, xtable)
+S3method(summary,spermanova)
+S3method(summary,PERMANOVA)
+S3method(plot,PERMANOVA)
+S3method(summary,MANOVA)
