@@ -1,4 +1,4 @@
-MANOVA <- function(Y, Group, C=NULL, M=NULL, Effects=NULL, InitialTransform = 5, AddOnes=FALSE, Contrasts=TRUE) {
+BootMANOVA <- function(Y, Group, C=NULL, M=NULL, Effects=NULL, InitialTransform = 5, AddOnes=FALSE, Contrasts=TRUE) {
 
   ContinuousDataTransform = c("Raw Data", "Substract the global mean", "Double centering", "Column centering", "Standardize columns", "Row centering",
                               "Standardize rows", "Divide by the column means and center", "Normalized residuals from independence")
@@ -13,7 +13,7 @@ MANOVA <- function(Y, Group, C=NULL, M=NULL, Effects=NULL, InitialTransform = 5,
 		colnames(Y) <- colnames(X, do.NULL = FALSE, prefix = "V")
 
 
-	Bip$Title = "MANOVA Biplot"
+	Bip$Title = "Boottstrap MANOVA Biplot"
 	Bip$Type = "MANOVA"
 	Bip$Non_Scaled_Data = Y
 	Bip$Means = apply(Y, 2, mean)
@@ -167,7 +167,7 @@ MANOVA <- function(Y, Group, C=NULL, M=NULL, Effects=NULL, InitialTransform = 5,
     Bip$Contrasts=EstimContrastes
   }
 
-  class(Bip)=c("MANOVA", "MANOVA.Biplot")
+  class(Bip)=c("MANOVA", "Canonical.Biplot")
 	return(Bip)
 }
 

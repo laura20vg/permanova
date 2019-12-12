@@ -1,7 +1,16 @@
-export(MANOVA, PerMANOVA.Simple, PerMANOVAF, PostHocComp, summary.spermanova, DistanciasBinarias,
-       MANOVA2Way, MANOVA.Estimacion, summary.MANOVA, PERMANOVA, DistanciasContinuas, PERMANOVA.Estimacion)
-import(Matrix, MultBiplotR, xtable)
+export(MANOVA, PerMANOVA.Simple, PerMANOVAF, PostHocComp, summary.spermanova, DistBinary,
+       MANOVA2Way, MANOVA.Estimacion, summary.MANOVA, PERMANOVA, DistContinuous, PERMANOVA.Estimacion, 
+       summary.PERMANOVA, print.PERMANOVA, BootDisMANOVA, summary.BootDisMANOVA, print.BootDisMANOVA, ConcEllipses, Fractions,
+       BootDistCanonicalAnalysis, plot.BootCanonAnalysis, plot.MANOVA.Biplot)
+import(Matrix, xtable)
 S3method(summary,spermanova)
 S3method(summary,PERMANOVA)
-S3method(plot,PERMANOVA)
+S3method(print, PERMANOVA)
+S3method(plot, PERMANOVA)
+S3method(plot, MANOVA.Biplot)
 S3method(summary,MANOVA)
+S3method(summary,BootDisMANOVA)
+S3method(print, BootDisMANOVA)
+S3method(plot, BootDisMANOVA)
+S3method(plot, BootCanonAnalysis)
+

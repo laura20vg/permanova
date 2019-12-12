@@ -8,7 +8,9 @@ PerMANOVA.Simple<- function(D, grupo, nperm = 999, seed=NULL, C=NULL ){
   Result$Inicial=PerMANOVAF(D, grupo)
   n = length(grupo)
   Result$Fvals=rep(0, nperm)
+  set.seed(1)
   for (i in 1:nperm){
+    print(i)
     muestra=sample.int(n)
     Result$Fvals[i]=PerMANOVAF(D[muestra, muestra], grupo)$Fexp
   }

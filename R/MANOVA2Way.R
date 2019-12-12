@@ -1,4 +1,4 @@
-MANOVA2Way <- function(Y, f1, f2, Interacyion=TRUE, M=NULL, InitialTransform = 5, AddOnes=FALSE){
+MANOVA2Way <- function(Y, f1, f2, Interaction=TRUE, M=NULL, InitialTransform = 5, AddOnes=FALSE){
   p1=length(levels(f1))
   c1=t(contr.helmert(p1))
   p2=length(levels(f2))

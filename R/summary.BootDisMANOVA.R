@@ -1,5 +1,5 @@
-summary.PERMANOVA <- function(x, Latex=FALSE){
-  cat(" ###### PERMANOVA Analysis #######\n\n")
+summary.BootDisMANOVA <- function(x, Latex=TRUE){
+  cat(" ###### Bootstrap Distance Based MANOVA Analysis #######\n\n")
   cat("Call\n")
   print(x$call)
   cat("________________________________________________\n\n")
@@ -11,7 +11,7 @@ summary.PERMANOVA <- function(x, Latex=FALSE){
     print(x$Effects)
     cat("________________________________________________\n\n")
   }
-  cat(paste("PerMANOVA\n"))
+  cat(paste("MANOVA\n"))
   print(x$Initial$Global)
   cat("________________________________________________\n\n")
   cat(paste("Contrasts\n"))
@@ -22,13 +22,10 @@ summary.PERMANOVA <- function(x, Latex=FALSE){
     print(rbind(x$Initial$Efectos, x$Initial$Global))
     cat("________________________________________________\n\n")
   }
+  
   if (Latex){
-    xtable(round(x$C, digits=0), caption="Contrast Matrix")
-    cat("________________________________________________\n\n")
-    xtable(x$Initial$Global, caption="PerMANOVA")
-    cat("________________________________________________\n\n")
-    xtable(rbind(x$Initial$Contrastes, x$Initial$Global), caption="perMANOVA with contrasts")
-    
+    xtable(x$Initial$Global)
+    xtable(rbind(x$Initial$Contrastes, x$Initial$Global))
+    xtable(rbind(x$Initial$Efectos, x$Initial$Global))
   }
 }
-

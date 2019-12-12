@@ -1,11 +1,11 @@
-plot.PERMANOVA <- function(x, A1 = 1, A2 = 2, ScaleGraph = TRUE,  ShowAxis=FALSE, ShowAxes=FALSE, LabelAxes=TRUE, margin=0.1, PlotAxis = FALSE, ShowBox=TRUE,
-                                              PlotGroups = TRUE, LabelGroups=TRUE, CexGroup=1.5, PchGroup=16, ColorGroup = NULL, voronoi = TRUE, VoronoiColor="black",
-                                              PlotInd = FALSE, LabelInd=TRUE, CexInd = 0.8, PchInd = 3, ColorInd = NULL,  WhatInds=NULL, IndLabels=NULL,
-                                              PlotVars = TRUE, LabelVar=TRUE, CexVar = NULL, PchVar = NULL, ColorVar=NULL, WhatVars=NULL, VarLabels=NULL,
-                                              mode="a", TypeScale = "Complete", ValuesScale = "Original", SmartLabels=TRUE,
-                                              AddLegend =TRUE, LegendPos="topright", PlotCircle = TRUE, ConvexHulls = FALSE, TypeCircle = "M",
-                                              MinQualityVars = 0, dpg = 0, dpi=0,  PredPoints=0, PlotClus = TRUE, TypeClus = "ch", ClustConf = 1, CexClustCenters=1,
-                                              ClustCenters = FALSE, UseClusterColors = TRUE, ...){
+plot.BootDisMANOVA <- function(x, A1 = 1, A2 = 2, ScaleGraph = TRUE,  ShowAxis=FALSE, ShowAxes=FALSE, LabelAxes=TRUE, margin=0.1, PlotAxis = FALSE, ShowBox=TRUE,
+                               PlotGroups = TRUE, LabelGroups=TRUE, CexGroup=1.5, PchGroup=16, ColorGroup = NULL, voronoi = TRUE, VoronoiColor="black",
+                               PlotInd = TRUE, LabelInd=TRUE, CexInd = 0.8, PchInd = 3, ColorInd = NULL,  WhatInds=NULL, IndLabels=NULL,
+                               PlotVars = TRUE, LabelVar=TRUE, CexVar = NULL, PchVar = NULL, ColorVar=NULL, WhatVars=NULL, VarLabels=NULL,
+                               mode="a", TypeScale = "Complete", ValuesScale = "Original", SmartLabels=TRUE,
+                               AddLegend =TRUE, LegendPos="topright", PlotCircle = TRUE, ConvexHulls = FALSE, TypeCircle = "M",
+                               MinQualityVars = 0, dpg = 0, dpi=0,  PredPoints=0, PlotClus = TRUE, TypeClus = "ch", ClustConf = 1, CexClustCenters=1,
+                               ClustCenters = FALSE, UseClusterColors = TRUE, ...){
   
   
   if (is.null(x$ClusterType))  x=AddCluster2Biplot(x, ClusterType="us", Groups=x$Groups)

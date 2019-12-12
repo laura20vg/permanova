@@ -1,5 +1,5 @@
 summary.spermanova <- function(perm, latex=FALSE){
-  cat(" ###### PERMANOVA : MANOVA basado en distancias #######\n")
+  cat(" ###### PERMANOVA : MANOVA based on distances #######\n")
   cat("________________________________________________\n")
   print(perm$call)
   cat("Number of permutations:", perm$nperm, "\n\n")
@@ -7,11 +7,11 @@ summary.spermanova <- function(perm, latex=FALSE){
   grados <- c(perm$Inicial$glb, perm$Inicial$glw, perm$Inicial$glt)
   Fexp <- c(round(perm$Inicial$Fexp,3), "", "")
   pvalor <- c(round(perm$pval,10), "", "")
-  res <- data.frame(SC, grados, Fexp, pvalor, row.names = c("Entre grupos", "Dentro de los grupos", "TOTAL"))
+  res <- data.frame(SC, grados, Fexp, pvalor, row.names = c("Between Groups", "Within Groups", "TOTAL"))
   print(res)
 
   if (latex){
-    print(xtable(res, caption="Resultados del PERMANOVA"))
+    print(xtable(res, caption="PERMANOVA results"))
   }
 }
 

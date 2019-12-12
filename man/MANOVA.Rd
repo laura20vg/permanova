@@ -1,44 +1,48 @@
 \name{MANOVA}
 \alias{MANOVA}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Multivariate Analysis of Variance (MANOVA)
 }
 \description{
-Performs a Multivariate Analysis of Variance (MANOVA).
+Performs a Multivariate Analysis of Variance (MANOVA) based on matrix calculations. Is an extension of the function in the base package of R.
+
+The function can take care of matrices of contrasts and matrices of linear combinations of variables in order to cope with complex designs.
 }
 \usage{
-MANOVA(Y, grupo, C = NULL, M = NULL, Efectos = NULL, InitialTransform = 5, AddOnes = FALSE, Contrastes = TRUE)
+MANOVA(Y, grupo, C = NULL, M = NULL, Efectos = NULL, InitialTransform = 5, AddOnes = FALSE, Contrasts = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{Y}{
-A matrix containing the response variables
+A matrix containing the response variables.
 }
   \item{Group}{
-A factor containing the groups to compare (or the trantments)
+A factor containing the groups to compare (or the treatments).
 }
   \item{C}{
-A matrix of contrasts
+A matrix of contrasts on the groups.
 }
   \item{M}{
-A matrix with the linear combinations of the variables
+A matrix with the linear combinations of the variables to test.
 }
   \item{Effects}{
-A factor with the effects in the rows of C
+A factor with the effects in the rows of C.
 }
   \item{InitialTransform}{
-Initial transformation of the response variables
+Initial transformation of the response variables.
 }
   \item{AddOnes}{
 Add a column of ones to the design matrix. By default is false.
 }
   \item{Contrasts}{
-Shoud each contrast be tested separately?. By default is TRUE.
+Should each contrast be tested separately?. By default is TRUE.
 }
+
 }
 \details{
 Performs a general MANOVA to compare several groups or treatments. Aditional contrasts can be tested using the contrasts matrix \eqn{\bf{C}}. This can also be separated into several effects.
+
+Here we use an approach with matrices rather than te usual multivariate general linear model. Several designs can be obtained using the appropriate matrix of contrasts.
 }
 \value{
 An object of class "MANOVA"  and "Canonical.Biplot"
@@ -58,20 +62,17 @@ Santana, M. A., Romay, G., Matehus, J., Vcente-Villardon, J. L., & Demey, J. R. 
 
 }
 \author{
-Laura Vicente González
+Laura Vicente-González and José Luis Vicente-Villardón
 }
 
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
+
 \examples{
 data(wine)
 Y=as.matrix(wine[,4:21])
 group=wine$Group
 manvin=MANOVA(Y, Group=group)
-plot(manvin, PlotClus=TRUE, PlotCircle=FALSE, PlotVars=FALSE)
+summary(manvin)
+plot(manvin, PlotClus=TRUE, PlotCircle=TRUE, PlotVars=TRUE)
+
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+

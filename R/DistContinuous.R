@@ -1,8 +1,11 @@
 
-DistanciasContinuas <- function(x, y=NULL,  coef = "Pythagorean", r = 1) {
+DistContinuous <- function(x, y=NULL,  coef = "Pythagorean", r = 1) {
+  # We sould change this function to avoid loops
   distances = c("Pythagorean", "Taxonomic", "City", "Minkowski", "Divergence", "dif_sum", "Camberra", "Bray_Curtis", "Soergel", "Ware_Hedges", "Gower")
   if (is.numeric(coef)) coef = distances[coef]
+  if (!is.matrix(x)) x=as.matrix(x)
   if (is.null(y)) y=x
+  if (!is.matrix(y)) y=as.matrix(y)
   n = nrow(x)
   p = ncol(x)
   s = nrow(y)

@@ -19,22 +19,22 @@ PERMANOVA.Estimacion <- function(D, X, C, Efectos=NULL){
   Result$Global=cbind(SCET, SCR, S, I-L, Fexp)
 
   FCexp=SCEC/(SCR/(I-L))
+  
+  SCEC=matrix(SCEC, ncol=1)
 
   Result$Contrastes=cbind(SCEC, rep(SCR, nc), rep(1, nc), rep(I-L, nc), FCexp)
-
+  rownames(Result$Contrastes)=rownames(C)
 
   if (!is.null(Efectos)){
-    XX=Factor2Binary(Efectos)
+    XX=t(Factor2Binary(Efectos))
     tam= XX %*% t(XX)
     SCE= XX %*% SCEC
     FEexp= (solve(tam) %*% XX %*% SCEC) / (SCR/(I-L))
     rownames(FEexp)=levels(Efectos)
-    Result$Efectos=cbind(SCE, rep(SCR, nc), diag(tam), rep(I-L, ne), FEexp)
+    Result$Efectos=cbind(SCE, rep(SCR, ne), diag(tam), rep(I-L, ne), FEexp)
     colnames(Result$Efectos)=c("Explicada", "Residual","G.L. Num", "G.L. Denom", "F-exp")
     rownames(Result$Efectos)=levels(Efectos)
-
   }
-
 
   return(Result)
 }

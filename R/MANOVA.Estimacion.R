@@ -45,7 +45,7 @@ MANOVA.Estimacion <- function(Y, X, C, M) {
   df2w = w * t - 0.5 * (J * glh - 2)
   s=min(c(J, glh))
   Wilksf = ((1 - Wilks^(1/t))/(Wilks^(1/t))) * (df2w/df1w)
-  Wilksp = 1 - pf(Wilksf, df1w, df2w)
+  Wilksp = round(1 - pf(Wilksf, df1w, df2w), digits=5)
   Wilsr=c(Wilks, Wilksf, df1w, df2w,  Wilksp)
   # Esto es para el caso en el que no haya matriz de contrastes. Hay que ver la adaptación
 
@@ -56,7 +56,7 @@ MANOVA.Estimacion <- function(Y, X, C, M) {
   Pillaif= ((2*n+s+1)*Pillai)/((2*m+s+1)*(s-Pillai))
   df1p=(2*m+s+1)*s
   df2p=(2*n+s+1)*s
-  Pillaip = 1 - pf(Pillaif, df1p, df2p)
+  Pillaip = round(1 - pf(Pillaif, df1p, df2p), digits=5)
 
   Pillair=c(Pillai, Pillaif, df1p, df2p,  Pillaip)
 
@@ -66,7 +66,7 @@ MANOVA.Estimacion <- function(Y, X, C, M) {
   Hottelingf=(Hotteling)*((2*(s*n+1))/(s^2*(2*m+s+1)))
   df1h=s*(2*m+s+1)
   df2h=2*(s*n+1)
-  Hottelingp = 1 - pf(Hottelingf, df1h, df2h)
+  Hottelingp = round(1 - pf(Hottelingf, df1h, df2h), digits=5)
   Hottelingr=c(Hotteling, Hottelingf, df1h, df2h,  Hottelingp)
 
 
@@ -76,7 +76,7 @@ MANOVA.Estimacion <- function(Y, X, C, M) {
   Royf=Roy*(2*v2+2)/(2*v1+2)
   df1r=(2*v1+2)
   df2r=(2*v2+2)
-  Royp = 1 - pf(Royf, df1p, df2p)
+  Royp = round(1 - pf(Royf, df1p, df2p), digits=5)
   Royr=c(Roy, Royf, df1r, df2r,  Royp)
 
   ManovaR=rbind(Wilsr, Pillair, Hottelingr, Royr)

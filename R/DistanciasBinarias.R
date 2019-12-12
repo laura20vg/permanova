@@ -1,5 +1,6 @@
-DistanciasBinarias <- function(x, y=NULL, coefficient= "Simple_Matching", transformation="sqrt(1-S)") {
-  if (!is.matrix(x)) stop("Input must be a matrix")
+DistBinary <- function(x, y=NULL, coefficient= "Simple_Matching", transformation="sqrt(1-S)") {
+  if (!is.matrix(x)) x=as.matrix(x)
+
   coefficients = c("Kulezynski", "Russell_and_Rao", "Jaccard", "Simple_Matching", "Anderberg", "Rogers_and_Tanimoto", "Sorensen_Dice_and_Czekanowski",
                    "Sneath_and_Sokal", "Hamman", "Kulezynski2", "Anderberg2", "Ochiai", "S13", "Pearson_phi", "Yule", "Sorensen", "Dice")
   if (is.numeric(coefficient)) coefficient=coefficients[coefficient]

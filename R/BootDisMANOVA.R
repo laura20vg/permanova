@@ -1,5 +1,5 @@
-PERMANOVA <- function(Distance, grupo, C=NULL, Efectos=NULL, nperm = 1000, seed=NULL, CoordPrinc=FALSE, dimens=2, PCoA="Standard", ProjectInd=TRUE, tol=1e-4, DatosIni=TRUE) {
-
+BootDisMANOVA <- function(Distance, grupo, C=NULL, Efectos=NULL, nperm = 1000, seed=NULL, CoordPrinc=FALSE, dimens=2, PCoA="Standard", ProjectInd=TRUE, tol=1e-4, DatosIni=TRUE) {
+  
   D=Distance$D
   Coefficient=Distance$Coefficient
   cl <- match.call()
@@ -46,9 +46,13 @@ PERMANOVA <- function(Distance, grupo, C=NULL, Efectos=NULL, nperm = 1000, seed=
     Perm$Effects=Efectos
   }
   
-  print("PerMANOVA Inicial")
   # PERMANOVA INICIAL
   Perm$Initial=PERMANOVA.Estimacion(D, X, C, Efectos)
+  
+  if (is.null(seed))
+    set.seed(1)
+  else
+    set.seed(seed)
   
   # Permutaciones
   Ftotal=matrix(0, 1,  nperm)
@@ -57,16 +61,11 @@ PERMANOVA <- function(Distance, grupo, C=NULL, Efectos=NULL, nperm = 1000, seed=
     ne=length(levels(Efectos))
     FEfectos=matrix(0, ne, nperm)
   }
- 
-  if (is.null(seed))
-    set.seed(1)
-  else
-    set.seed(seed)
   
   for (i in 1:nperm){
     if (i%%100==0)
-    print(i)
-    muestra=sample.int(I)
+      print(i)
+    muestra=sample.int(I, size=I, replace=TRUE)
     Man=PERMANOVA.Estimacion(D[muestra, muestra], X, C, Efectos)
     Ftotal[i]=Man$Global[5]
     FContrastes[,i]=Man$Contrastes[,5]
@@ -92,13 +91,13 @@ PERMANOVA <- function(Distance, grupo, C=NULL, Efectos=NULL, nperm = 1000, seed=
     pvalE=(apply(FEfectos > matrix(Perm$Initial$Efectos[,5], ncol=1) %*% matrix(1, 1, nperm), 1, sum)+1)/ (nperm+1)
     Perm$Initial$Efectos=cbind(Perm$Initial$Efectos, pvalE)
     colnames(Perm$Initial$Efectos)=c("Explained", "Residual","G.L. Num", "G.L. Denom", "F-exp", "p-value")
+    print(Perm$Initial$Efectos)
   }
-
   
   Perm$CoordPrinc=CoordPrinc
   
   if (CoordPrinc){
-   
+    
     N=t(X) %*% X
     #D=0.5*D^2
     FS=solve(N)%*% (t(X) %*% (0.5*D^2) %*% X) %*% solve(N)
@@ -166,11 +165,9 @@ PERMANOVA <- function(Distance, grupo, C=NULL, Efectos=NULL, nperm = 1000, seed=
     
     Perm=AddCluster2Biplot(Perm, ClusterType="us", Groups=grupo )
   }
-  class(Perm)=c("PERMANOVA")
+  class(Perm)=c("BootDisMANOVA")
   return(Perm)
 }
-
-
 
 
 

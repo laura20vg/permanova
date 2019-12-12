@@ -3,10 +3,10 @@ Type: Package
 Title: MANOVA and PERMANOVA
 Version: 0.1.0
 Author: Laura Vicente Gonzalez
-Maintainer: The package maintainer <laura20vg@usal.es>
-Description: calculates MANOVA and PerMANOVA and some associated pictorial repressentations.
-License: What license is it under?
+Maintainer: Laura Vicente González <laura20vg@usal.es>
+Description: Calculates MANOVA and PerMANOVA and some associated pictorial repressentations.
+License: GPL (>=2)
 Encoding: UTF-8
-Depends:R (>= 2.15.0), MultBiplotR, Matrix, xtable
+Depends:R (>= 2.15.0), Matrix, xtable
 LazyData: true
 
